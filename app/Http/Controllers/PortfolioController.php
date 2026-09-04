@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\ContactMessage;
 use App\Models\Post;
 use App\Models\Project;
+use App\Models\SiteSetting;
 use App\Models\Skill;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -24,14 +25,17 @@ class PortfolioController extends Controller
 
         $latestPosts = Post::published()->latest('published_at')->limit(3)->get();
 
-        return view('site.home', compact('featuredProjects', 'skills', 'latestPosts'));
+        $settings = SiteSetting::current();
+
+        return view('site.home', compact('featuredProjects', 'skills', 'latestPosts', 'settings'));
     }
 
     public function about(): View
     {
         $skills = Skill::orderBy('sort_order')->orderBy('name')->get()->groupBy('category');
+        $settings = SiteSetting::current();
 
-        return view('site.about', compact('skills'));
+        return view('site.about', compact('skills', 'settings'));
     }
 
     public function projects(): View
@@ -62,7 +66,9 @@ class PortfolioController extends Controller
 
     public function contact(): View
     {
-        return view('site.contact');
+        $settings = SiteSetting::current();
+
+        return view('site.contact', compact('settings'));
     }
 
     public function contactStore(Request $request): RedirectResponse

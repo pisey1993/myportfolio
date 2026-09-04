@@ -1,130 +1,71 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
-    <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('admin.dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
-                    </a>
-                </div>
+@php
+    $unreadMessages = \App\Models\ContactMessage::whereNull('read_at')->count();
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('admin.projects.index')" :active="request()->routeIs('admin.projects.*')">
-                        {{ __('Projects') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.*')">
-                        {{ __('Posts') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('admin.skills.index')" :active="request()->routeIs('admin.skills.*')">
-                        {{ __('Skills') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('admin.messages.index')" :active="request()->routeIs('admin.messages.*')">
-                        {{ __('Messages') }}
-                    </x-nav-link>
-                </div>
-            </div>
+    $navItems = [
+        ['route' => 'admin.dashboard', 'pattern' => 'admin.dashboard', 'label' => 'Dashboard', 'icon' => 'dashboard'],
+        ['route' => 'admin.projects.index', 'pattern' => 'admin.projects.*', 'label' => 'Projects', 'icon' => 'briefcase'],
+        ['route' => 'admin.posts.index', 'pattern' => 'admin.posts.*', 'label' => 'Posts', 'icon' => 'document'],
+        ['route' => 'admin.skills.index', 'pattern' => 'admin.skills.*', 'label' => 'Skills', 'icon' => 'chart'],
+        ['route' => 'admin.messages.index', 'pattern' => 'admin.messages.*', 'label' => 'Messages', 'icon' => 'envelope', 'badge' => $unreadMessages],
+        ['route' => 'admin.database.index', 'pattern' => 'admin.database.*', 'label' => 'Database', 'icon' => 'database'],
+        ['route' => 'admin.settings.edit', 'pattern' => 'admin.settings.*', 'label' => 'Settings', 'icon' => 'settings'],
+    ];
+@endphp
 
-            <!-- Settings Dropdown -->
-            <div class="hidden sm:flex sm:items-center sm:ms-6">
-                <a href="{{ route('home') }}" target="_blank" class="text-sm text-gray-500 hover:text-gray-700 me-4">
-                    {{ __('View Site') }} &#8599;
-                </a>
-                <x-dropdown align="right" width="48">
-                    <x-slot name="trigger">
-                        <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                            <div>{{ Auth::user()->name }}</div>
+@php
+    $icon = function (string $name, string $class = 'w-4 h-4') {
+        $paths = [
+            'dashboard' => '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+            'briefcase' => '<rect x="3" y="7" width="18" height="13" rx="1"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="3" y1="12" x2="21" y2="12"/>',
+            'document' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/>',
+            'chart' => '<line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/>',
+            'envelope' => '<rect x="3" y="5" width="18" height="14" rx="1"/><path d="M3 7l9 6 9-6"/>',
+            'database' => '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"/>',
+            'settings' => '<circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>',
+            'collapse' => '<polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/>',
+        ];
 
-                            <div class="ms-1">
-                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                                </svg>
-                            </div>
-                        </button>
-                    </x-slot>
+        return '<svg class="'.$class.' shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'.($paths[$name] ?? '').'</svg>';
+    };
+@endphp
 
-                    <x-slot name="content">
-                        <x-dropdown-link :href="route('profile.edit')">
-                            {{ __('Profile') }}
-                        </x-dropdown-link>
+<div x-show="sidebarOpen" x-cloak @click="sidebarOpen = false" class="fixed inset-0 top-8 bg-gray-900/50 z-40 lg:hidden"></div>
 
-                        <!-- Authentication -->
-                        <form method="POST" action="{{ route('logout') }}">
-                            @csrf
+<aside
+    x-data="{ collapsed: false }"
+    :class="[sidebarOpen ? 'translate-x-0' : '-translate-x-full', collapsed ? 'lg:w-11' : 'lg:w-[180px]']"
+    class="fixed top-8 bottom-0 left-0 z-50 w-[180px] bg-[#1d2327] flex flex-col shrink-0 transform transition-[transform,width] duration-200 ease-in-out lg:translate-x-0 lg:static"
+>
+    <nav class="flex-1 overflow-y-auto overflow-x-hidden py-2">
+        @foreach ($navItems as $item)
+            @php $active = request()->routeIs($item['pattern']); @endphp
+            <a href="{{ route($item['route']) }}"
+                :title="collapsed ? '{{ $item['label'] }}' : ''"
+                class="flex items-center gap-2.5 px-3.5 py-2.5 text-[13px] font-medium border-l-4 transition whitespace-nowrap
+                    {{ $active
+                        ? 'bg-[#2271b1] border-l-white text-white'
+                        : 'border-l-transparent text-[#f0f0f1]/70 hover:bg-[#2c3338] hover:text-[#72aee6]' }}">
+                {!! $icon($item['icon']) !!}
+                <span x-show="!collapsed" x-cloak class="flex-1">{{ $item['label'] }}</span>
+                @if (! empty($item['badge']))
+                    <span x-show="!collapsed" class="inline-flex items-center justify-center min-w-[1.1rem] h-[1.1rem] px-1 rounded-full text-[10px] font-semibold bg-[#d63638] text-white">
+                        {{ $item['badge'] }}
+                    </span>
+                    <span x-show="collapsed" x-cloak class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[#d63638]"></span>
+                @endif
+            </a>
+        @endforeach
+    </nav>
 
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </x-dropdown-link>
-                        </form>
-                    </x-slot>
-                </x-dropdown>
-            </div>
-
-            <!-- Hamburger -->
-            <div class="-me-2 flex items-center sm:hidden">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
-                    <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-                        <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-                        <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-        </div>
+    <div class="border-t border-white/10 shrink-0">
+        <a href="{{ route('home') }}" target="_blank"
+            class="flex items-center gap-2.5 px-3.5 py-2.5 text-[13px] font-medium text-[#f0f0f1]/70 hover:bg-[#2c3338] hover:text-[#72aee6] transition whitespace-nowrap">
+            <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            <span x-show="!collapsed" x-cloak>Visit Site</span>
+        </a>
+        <button @click="collapsed = !collapsed" class="hidden lg:flex w-full items-center gap-2.5 px-3.5 py-2.5 text-[13px] font-medium text-[#f0f0f1]/50 hover:bg-[#2c3338] hover:text-[#72aee6] transition">
+            <svg class="w-4 h-4 shrink-0 transition-transform" :class="collapsed ? 'rotate-180' : ''" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">{!! '<polyline points="11 17 6 12 11 7"/><polyline points="18 17 13 12 18 7"/>' !!}</svg>
+            <span x-show="!collapsed" x-cloak>Collapse menu</span>
+        </button>
     </div>
-
-    <!-- Responsive Navigation Menu -->
-    <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
-        <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')">
-                {{ __('Dashboard') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.projects.index')" :active="request()->routeIs('admin.projects.*')">
-                {{ __('Projects') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.posts.index')" :active="request()->routeIs('admin.posts.*')">
-                {{ __('Posts') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.skills.index')" :active="request()->routeIs('admin.skills.*')">
-                {{ __('Skills') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('admin.messages.index')" :active="request()->routeIs('admin.messages.*')">
-                {{ __('Messages') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('home')">
-                {{ __('View Site') }}
-            </x-responsive-nav-link>
-        </div>
-
-        <!-- Responsive Settings Options -->
-        <div class="pt-4 pb-1 border-t border-gray-200">
-            <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
-            </div>
-
-            <div class="mt-3 space-y-1">
-                <x-responsive-nav-link :href="route('profile.edit')">
-                    {{ __('Profile') }}
-                </x-responsive-nav-link>
-
-                <!-- Authentication -->
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
-                                        this.closest('form').submit();">
-                        {{ __('Log Out') }}
-                    </x-responsive-nav-link>
-                </form>
-            </div>
-        </div>
-    </div>
-</nav>
+</aside>
