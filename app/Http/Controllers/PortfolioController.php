@@ -2,13 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactMessageReceived;
 use App\Models\ContactMessage;
+use App\Models\Experience;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\SiteSetting;
 use App\Models\Skill;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class PortfolioController extends Controller
@@ -33,9 +37,10 @@ class PortfolioController extends Controller
     public function about(): View
     {
         $skills = Skill::orderBy('sort_order')->orderBy('name')->get()->groupBy('category');
+        $experiences = Experience::orderBy('sort_order')->orderByDesc('id')->get();
         $settings = SiteSetting::current();
 
-        return view('site.about', compact('skills', 'settings'));
+        return view('site.about', compact('skills', 'experiences', 'settings'));
     }
 
     public function projects(): View
@@ -80,8 +85,20 @@ class PortfolioController extends Controller
             'message' => ['required', 'string', 'max:5000'],
         ]);
 
-        ContactMessage::create($validated);
+        $contactMessage = ContactMessage::create($validated);
 
-        return back()->with('status', 'Thanks for reaching out! I\'ll get back to you soon.');
+        try {
+            Mail::to('mrsey9999@gmail.com')->send(new ContactMessageReceived($contactMessage));
+
+            $status = 'Message sent successfully! I\'ll get back to you soon.';
+            $statusType = 'success';
+        } catch (\Throwable $e) {
+            Log::warning('Contact message email failed: '.$e->getMessage());
+
+            $status = 'Thanks for reaching out! Your message was saved and I\'ll get back to you soon.';
+            $statusType = 'info';
+        }
+
+        return back()->with('status', $status)->with('status_type', $statusType);
     }
 }

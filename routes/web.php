@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\ContactMessageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DatabaseController;
+use App\Http\Controllers\Admin\ExperienceController as AdminExperienceController;
 use App\Http\Controllers\Admin\PostController as AdminPostController;
 use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\Admin\SettingsController;
@@ -31,6 +32,7 @@ Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(
     Route::resource('projects', AdminProjectController::class)->except('show');
     Route::resource('posts', AdminPostController::class)->except('show');
     Route::resource('skills', AdminSkillController::class)->except('show');
+    Route::resource('experiences', AdminExperienceController::class)->except('show');
     Route::get('/messages', [ContactMessageController::class, 'index'])->name('messages.index');
     Route::get('/messages/{message}', [ContactMessageController::class, 'show'])->name('messages.show');
     Route::delete('/messages/{message}', [ContactMessageController::class, 'destroy'])->name('messages.destroy');

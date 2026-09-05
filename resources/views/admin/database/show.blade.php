@@ -3,14 +3,14 @@
         <div class="flex items-center justify-between">
             <div>
                 <a href="{{ route('admin.database.index') }}" class="text-sm text-gray-500 hover:text-gray-800">&larr; Database</a>
-                <h1 class="text-2xl font-normal text-[#1d2327] font-mono">{{ $table }}</h1>
+                <h1 class="text-2xl font-semibold tracking-tight text-[#0f172a] font-mono">{{ $table }}</h1>
             </div>
             <div class="flex gap-3">
                 <a href="{{ route('admin.database.manage', $table) }}" class="inline-flex items-center px-4 py-2 rounded-md border border-gray-300 text-gray-700 text-sm font-medium hover:bg-gray-50">
                     Manage Columns
                 </a>
                 @if ($primaryKey)
-                    <a href="{{ route('admin.database.create', $table) }}" class="inline-flex items-center px-4 py-2 rounded-md bg-[#2271b1] text-white text-sm font-medium hover:bg-[#135e96]">
+                    <a href="{{ route('admin.database.create', $table) }}" class="inline-flex items-center px-4 py-2 rounded-md bg-[#4f46e5] text-white text-sm font-medium hover:bg-[#4338ca]">
                         New Row
                     </a>
                 @endif
@@ -21,7 +21,7 @@
     <div class="py-12">
         <div class="max-w-full mx-auto px-4 sm:px-6 lg:px-8 space-y-4">
             @if (session('status'))
-                <div class="bg-white border-l-4 border-[#00a32a] shadow-sm px-4 py-3 text-[13px] text-[#1d2327]">
+                <div class="rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
                     {{ session('status') }}
                 </div>
             @endif
@@ -38,7 +38,7 @@
                 </div>
             @endunless
 
-            <div class="bg-white border border-[#c3c4c7] rounded-[4px] shadow-[0_1px_1px_rgba(0,0,0,.04)] overflow-x-auto">
+            <div class="bg-white border border-[#e2e8f0] rounded-xl shadow-sm overflow-x-auto">
                 <table class="min-w-full divide-y divide-gray-100 text-sm">
                     <thead class="bg-gray-50">
                         <tr>
@@ -70,7 +70,7 @@
                                 @endforeach
                                 @if ($primaryKey)
                                     <td class="px-4 py-3 text-right whitespace-nowrap space-x-3">
-                                        <a href="{{ route('admin.database.edit', [$table, $row->{$primaryKey}]) }}" class="text-[#2271b1] hover:text-[#135e96]">Edit</a>
+                                        <a href="{{ route('admin.database.edit', [$table, $row->{$primaryKey}]) }}" class="text-[#4f46e5] hover:text-[#4338ca]">Edit</a>
                                         <form action="{{ route('admin.database.destroy', [$table, $row->{$primaryKey}]) }}" method="POST" class="inline" onsubmit="return confirm('Delete this row?');">
                                             @csrf
                                             @method('DELETE')

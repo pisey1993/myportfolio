@@ -17,6 +17,7 @@ class SiteSetting extends Model
         'github_url',
         'linkedin_url',
         'twitter_url',
+        'telegram_url',
     ];
 
     private static ?self $cached = null;

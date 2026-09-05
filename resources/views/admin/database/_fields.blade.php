@@ -20,15 +20,15 @@
         @if ($isBoolean)
             <div class="mt-2">
                 <input type="checkbox" name="field[{{ $name }}]" id="field-{{ $name }}" value="1" {{ $old ? 'checked' : '' }}
-                    class="rounded border-gray-300 text-[#2271b1] focus:ring-[#2271b1]">
+                    class="rounded border-gray-300 text-[#4f46e5] focus:ring-[#4f46e5]">
             </div>
         @elseif ($isLong)
             <textarea name="field[{{ $name }}]" id="field-{{ $name }}" rows="4"
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#2271b1] focus:ring-[#2271b1] sm:text-sm font-mono">{{ $old }}</textarea>
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#4f46e5] focus:ring-[#4f46e5] sm:text-sm font-mono">{{ $old }}</textarea>
         @else
             <input type="{{ $isNumber ? 'number' : 'text' }}" name="field[{{ $name }}]" id="field-{{ $name }}" value="{{ $old }}"
                 {{ $isNumber ? 'step=any' : '' }}
-                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#2271b1] focus:ring-[#2271b1] sm:text-sm font-mono">
+                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-[#4f46e5] focus:ring-[#4f46e5] sm:text-sm font-mono">
         @endif
         @error("field.$name")<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
     </div>

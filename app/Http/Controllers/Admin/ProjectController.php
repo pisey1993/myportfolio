@@ -64,6 +64,7 @@ class ProjectController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'summary' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
+            'features' => ['nullable', 'string'],
             'image' => ['nullable', 'string', 'max:255'],
             'tech_stack' => ['nullable', 'string', 'max:255'],
             'project_url' => ['nullable', 'url', 'max:255'],

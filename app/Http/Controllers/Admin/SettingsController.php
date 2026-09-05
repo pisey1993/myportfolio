@@ -30,6 +30,7 @@ class SettingsController extends Controller
             'github_url' => ['nullable', 'url', 'max:255'],
             'linkedin_url' => ['nullable', 'url', 'max:255'],
             'twitter_url' => ['nullable', 'url', 'max:255'],
+            'telegram_url' => ['nullable', 'url', 'max:255'],
             'avatar' => ['nullable', 'image', 'max:2048'],
             'avatar_position_x' => ['nullable', 'integer', 'min:0', 'max:100'],
             'avatar_position_y' => ['nullable', 'integer', 'min:0', 'max:100'],
