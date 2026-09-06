@@ -106,6 +106,19 @@ table.anim-table tbody tr { transition: background-color var(--anim-fast) var(--
 tr.row-removing { animation: fadeOutCollapse var(--anim-normal) var(--ease-in-out) forwards; overflow: hidden; }
 @keyframes fadeOutCollapse { from { opacity: 1; } to { opacity: 0; max-height: 0; padding-top: 0; padding-bottom: 0; } }
 
+/* ── Nav traveling indicator underline ──────────────────────── */
+/* The pill's ::after is a bright gradient bar pinned to its bottom edge,
+   so it travels and resizes together with the pill (see site-layout.blade.php)
+   without needing separate JS to track it. */
+.nav-indicator::after {
+  content: '';
+  position: absolute;
+  left: 10px; right: 10px; bottom: -1px;
+  height: 2.5px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #ec4899, #d946ef);
+}
+
 /* ── Buttons ─────────────────────────────────────────────────── */
 .is-loading { position: relative; color: transparent !important; pointer-events: none; }
 .is-loading::after {

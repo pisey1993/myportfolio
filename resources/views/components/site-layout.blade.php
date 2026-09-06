@@ -35,18 +35,35 @@
                     {{ $settings->headline }}
                 </a>
 
-                <nav class="hidden sm:flex items-center gap-8 text-sm font-medium text-slate-600 dark:text-slate-400">
+                <nav x-data="{
+                        moveTo(el) {
+                            this.$refs.indicator.style.width = el.offsetWidth + 'px';
+                            this.$refs.indicator.style.transform = `translateX(${el.offsetLeft}px)`;
+                        },
+                        resetToActive() {
+                            const active = this.$refs.nav.querySelector('.is-active');
+                            if (active) this.moveTo(active);
+                        },
+                    }"
+                    x-ref="nav"
+                    x-init="resetToActive()"
+                    @mouseleave="resetToActive()"
+                    @resize.window="resetToActive()"
+                    class="hidden sm:flex items-center gap-1 text-sm font-medium text-slate-600 dark:text-slate-400 relative">
+                    <span x-ref="indicator" class="nav-indicator absolute left-0 bottom-0 h-full rounded-full bg-gradient-to-r from-pink-500/15 to-fuchsia-400/15 border border-pink-500/20 dark:border-fuchsia-400/20 transition-all duration-300 ease-out" style="width: 0"></span>
+
                     @php
                         $navItems = [
                             ['route' => 'home', 'pattern' => 'home', 'label' => 'Home'],
                             ['route' => 'about', 'pattern' => 'about', 'label' => 'About me'],
                             ['route' => 'projects.index', 'pattern' => 'projects.*', 'label' => 'Projects'],
                             ['route' => 'blog.index', 'pattern' => 'blog.*', 'label' => 'Blog'],
+                            ['route' => 'video-blog.index', 'pattern' => 'video-blog.*', 'label' => 'Video Blog'],
                         ];
                     @endphp
                     @foreach ($navItems as $item)
-                        <a href="{{ route($item['route']) }}"
-                            class="transition {{ request()->routeIs($item['pattern']) ? 'text-slate-900 dark:text-white' : 'hover:text-slate-900 dark:hover:text-white' }}">
+                        <a href="{{ route($item['route']) }}" @mouseenter="moveTo($event.currentTarget)"
+                            class="relative z-10 px-3.5 py-2 rounded-full transition-colors duration-300 ease-out {{ request()->routeIs($item['pattern']) ? 'is-active text-slate-900 dark:text-white' : 'hover:text-slate-900 dark:hover:text-white' }}">
                             {{ $item['label'] }}
                         </a>
                     @endforeach
@@ -85,11 +102,18 @@
                 x-transition:leave-start="opacity-100 translate-y-0"
                 x-transition:leave-end="opacity-0 -translate-y-2"
                 class="sm:hidden border-t border-slate-200 dark:border-white/10 py-4 space-y-1 text-sm font-medium">
-                <a href="{{ route('home') }}" class="block px-2 py-2 rounded-lg {{ request()->routeIs('home') ? 'bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400' }}">Home</a>
-                <a href="{{ route('about') }}" class="block px-2 py-2 rounded-lg {{ request()->routeIs('about') ? 'bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400' }}">About me</a>
-                <a href="{{ route('projects.index') }}" class="block px-2 py-2 rounded-lg {{ request()->routeIs('projects.*') ? 'bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400' }}">Projects</a>
-                <a href="{{ route('blog.index') }}" class="block px-2 py-2 rounded-lg {{ request()->routeIs('blog.*') ? 'bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400' }}">Blog</a>
-                <a href="{{ route('contact') }}" class="block px-2 py-2 rounded-lg {{ request()->routeIs('contact') ? 'bg-slate-100 dark:bg-white/10 text-slate-900 dark:text-white' : 'text-slate-600 dark:text-slate-400' }}">Contact</a>
+                @php
+                    $mobileLinkClass = fn (bool $active) => 'block px-3 py-2 rounded-lg transition-all duration-300 ease-out '
+                        .($active
+                            ? 'bg-gradient-to-r from-pink-500/10 to-fuchsia-400/10 text-slate-900 dark:text-white'
+                            : 'text-slate-600 dark:text-slate-400 hover:bg-gradient-to-r hover:from-pink-500/10 hover:to-fuchsia-400/10 hover:text-slate-900 dark:hover:text-white');
+                @endphp
+                <a href="{{ route('home') }}" class="{{ $mobileLinkClass(request()->routeIs('home')) }}">Home</a>
+                <a href="{{ route('about') }}" class="{{ $mobileLinkClass(request()->routeIs('about')) }}">About me</a>
+                <a href="{{ route('projects.index') }}" class="{{ $mobileLinkClass(request()->routeIs('projects.*')) }}">Projects</a>
+                <a href="{{ route('blog.index') }}" class="{{ $mobileLinkClass(request()->routeIs('blog.*')) }}">Blog</a>
+                <a href="{{ route('video-blog.index') }}" class="{{ $mobileLinkClass(request()->routeIs('video-blog.*')) }}">Video Blog</a>
+                <a href="{{ route('contact') }}" class="{{ $mobileLinkClass(request()->routeIs('contact')) }}">Contact</a>
             </div>
         </div>
     </header>
@@ -123,6 +147,7 @@
                         <li><a href="{{ route('about') }}" class="hover:text-slate-900 dark:hover:text-white">About</a></li>
                         <li><a href="{{ route('projects.index') }}" class="hover:text-slate-900 dark:hover:text-white">Projects</a></li>
                         <li><a href="{{ route('blog.index') }}" class="hover:text-slate-900 dark:hover:text-white">Blog</a></li>
+                        <li><a href="{{ route('video-blog.index') }}" class="hover:text-slate-900 dark:hover:text-white">Video Blog</a></li>
                         <li><a href="{{ route('contact') }}" class="hover:text-slate-900 dark:hover:text-white">Contact</a></li>
                     </ul>
                 </div>

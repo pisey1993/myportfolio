@@ -4,11 +4,21 @@
         <a href="{{ route('admin.posts.create') }}" class="inline-flex items-center px-3 py-1 rounded-lg border border-[#4f46e5] text-[#4f46e5] text-[13px] font-medium hover:bg-[#eef2ff]">
             Add New
         </a>
+        <form method="POST" action="{{ route('admin.posts.generate-and-create') }}">
+            @csrf
+            <button type="submit" class="inline-flex items-center px-3 py-1 rounded-lg bg-[#4f46e5] text-white text-[13px] font-medium hover:bg-[#4338ca]">
+                ✨ Generate from AI News
+            </button>
+        </form>
     </x-slot>
 
     <div class="px-4 sm:px-6 lg:px-8 pb-8">
         @if (session('status'))
-            <div class="mb-4 rounded-xl bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+            <div @class([
+                'mb-4 rounded-xl px-4 py-3 text-sm',
+                'bg-red-50 text-red-700' => session('status_type') === 'error',
+                'bg-emerald-50 text-emerald-700' => session('status_type') !== 'error',
+            ])>
                 {{ session('status') }}
             </div>
         @endif
@@ -21,6 +31,7 @@
                     <thead>
                         <tr class="border-b border-[#e2e8f0]">
                             <th class="px-4 py-2 text-left font-semibold text-[#0f172a]">Title</th>
+                            <th class="px-4 py-2 text-left font-semibold text-[#0f172a]">Type</th>
                             <th class="px-4 py-2 text-left font-semibold text-[#0f172a]">Status</th>
                             <th class="px-4 py-2 text-left font-semibold text-[#0f172a]">Published</th>
                         </tr>
@@ -43,6 +54,13 @@
                                             <button type="submit" class="text-[#b91c1c] hover:text-[#dc2626] hover:underline">Delete</button>
                                         </form>
                                     </div>
+                                </td>
+                                <td class="px-4 py-3 align-top">
+                                    @if ($post->type === \App\Models\Post::TYPE_VIDEO)
+                                        <span class="inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#7c3aed]/10 text-[#7c3aed]">Video Blog</span>
+                                    @else
+                                        <span class="inline-flex px-2 py-0.5 rounded-full text-[11px] font-medium bg-[#0ea5e9]/10 text-[#0ea5e9]">Blog</span>
+                                    @endif
                                 </td>
                                 <td class="px-4 py-3 align-top">
                                     @if ($post->is_published)

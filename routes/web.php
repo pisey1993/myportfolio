@@ -18,6 +18,7 @@ Route::get('/projects', [PortfolioController::class, 'projects'])->name('project
 Route::get('/projects/{project}', [PortfolioController::class, 'projectShow'])->name('projects.show');
 Route::get('/blog', [PortfolioController::class, 'blog'])->name('blog.index');
 Route::get('/blog/{post}', [PortfolioController::class, 'blogShow'])->name('blog.show');
+Route::get('/video-blog', [PortfolioController::class, 'videoBlog'])->name('video-blog.index');
 Route::get('/contact', [PortfolioController::class, 'contact'])->name('contact');
 Route::post('/contact', [PortfolioController::class, 'contactStore'])->name('contact.store');
 
@@ -30,6 +31,9 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('projects', AdminProjectController::class)->except('show');
+    Route::get('/posts/youtube-meta', [AdminPostController::class, 'youtubeMeta'])->name('posts.youtube-meta');
+    Route::post('/posts/generate-news', [AdminPostController::class, 'generateFromNews'])->name('posts.generate-news');
+    Route::post('/posts/generate-and-create', [AdminPostController::class, 'generateAndCreate'])->name('posts.generate-and-create');
     Route::resource('posts', AdminPostController::class)->except('show');
     Route::resource('skills', AdminSkillController::class)->except('show');
     Route::resource('experiences', AdminExperienceController::class)->except('show');

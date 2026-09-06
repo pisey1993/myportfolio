@@ -27,7 +27,7 @@ class PortfolioController extends Controller
 
         $skills = Skill::orderBy('sort_order')->orderBy('name')->get()->groupBy('category');
 
-        $latestPosts = Post::published()->latest('published_at')->limit(3)->get();
+        $latestPosts = Post::published()->articles()->latest('published_at')->limit(3)->get();
 
         $settings = SiteSetting::current();
 
@@ -57,7 +57,7 @@ class PortfolioController extends Controller
 
     public function blog(): View
     {
-        $posts = Post::published()->latest('published_at')->paginate(6);
+        $posts = Post::published()->articles()->latest('published_at')->paginate(6);
 
         return view('site.blog.index', compact('posts'));
     }
@@ -67,6 +67,13 @@ class PortfolioController extends Controller
         abort_unless($post->is_published, 404);
 
         return view('site.blog.show', compact('post'));
+    }
+
+    public function videoBlog(): View
+    {
+        $posts = Post::published()->videos()->latest('published_at')->paginate(6);
+
+        return view('site.blog.video-index', compact('posts'));
     }
 
     public function contact(): View

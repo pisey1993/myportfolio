@@ -10,12 +10,16 @@
 
                 <p class="mt-4 text-xs text-slate-500">{{ $post->published_at->format('F j, Y') }}</p>
                 <h1 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">{{ $post->title }}</h1>
+
+                <x-share-buttons :url="url()->current()" :title="$post->title" class="mt-5" />
             </div>
         </div>
 
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="aspect-[16/9] rounded-2xl overflow-hidden border border-slate-200 dark:border-white/10">
-                @if ($post->cover_image)
+                @if ($post->video_url)
+                    <iframe src="{{ $post->embed_url }}" title="{{ $post->title }}" class="w-full h-full" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                @elseif ($post->cover_image)
                     <img src="{{ $post->cover_image }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
                 @else
                     <x-media-placeholder :title="$post->title" class="w-full h-full" />
@@ -25,6 +29,10 @@
 
         <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-24">
             <div class="prose dark:prose-invert max-w-none text-slate-700 dark:text-slate-300 whitespace-pre-line">{{ $post->body }}</div>
+
+            <div class="mt-10 pt-6 border-t border-slate-200 dark:border-white/10">
+                <x-share-buttons :url="url()->current()" :title="$post->title" />
+            </div>
         </div>
     </article>
 
