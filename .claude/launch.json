@@ -3,9 +3,9 @@
   "configurations": [
     {
       "name": "pisey",
-      "runtimeExecutable": "php",
-      "runtimeArgs": ["artisan", "serve"],
-      "port": 8000
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3000
     }
   ]
 }
