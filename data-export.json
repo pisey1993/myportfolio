@@ -1,0 +1,379 @@
+{
+    "siteSettings": {
+        "id": 1,
+        "headline": "Pisey",
+        "tagline": "Senior IT Manager",
+        "hero_description": "Senior IT Manager with 10+ years in the insurance industry, leading enterprise technology modernization, CRM development, and AI-powered business tools.",
+        "avatar_path": "avatars/pisey.png",
+        "email": null,
+        "github_url": null,
+        "linkedin_url": "https://www.linkedin.com/in/chhin-pisey-b53765163/",
+        "twitter_url": null,
+        "created_at": "2026-09-05T07:33:45.000000Z",
+        "updated_at": "2026-09-05T10:17:42.000000Z",
+        "avatar_position_x": 50,
+        "avatar_position_y": 20,
+        "telegram_url": "https://t.me/psch6666"
+    },
+    "projects": [
+        {
+            "id": 15,
+            "title": "Insurance Core System Modernization",
+            "slug": "insurance-core-system-modernization",
+            "summary": "Migrated a decade of legacy FileMaker data and workflows to a modern web-based Insurance Core System, with zero business disruption.",
+            "description": "Originally designed and built the company's Insurance Core System in FileMaker, then years later planned and led its complete migration to a modern web-based platform, coordinating business stakeholders and the technical team throughout.\n\nThis is the system of record the whole business runs on. It covers:\n- Policy management — issuing and maintaining policies across every product line\n- Quote issuance — generating and tracking quotes through to bound policies\n- Underwriting — task and turn-around-time (TAT) tracking by sales channel (Direct Sale, Broker, Banca)\n- Claims register — the full claims lifecycle from registration through BTA, settlement, and BFA\n- Invoicing — debit/credit note (DCN) issuance reconciled against receipt vouchers for premium collection\nEvery other internal system — the CRM, the agency self-service portal, and the AI assistant — reads from and reports on this database. Researched Docker, Coolify, and Virtual Private Server-based deployment options to guide the rollout strategy. Completed May 2026 after migrating over ten years of accumulated data and workflows with zero business disruption.\n\nTech stack:\n- Laravel & PHP — power the full system of record\n- MySQL — stores every policy, claim, and financial record that other internal systems read from\n- Docker — packages the app for deployment\n- Coolify — manages the self-hosted rollout on a VPS",
+            "image": null,
+            "tech_stack": "PHP, Laravel, Docker, Coolify, MySQL",
+            "project_url": null,
+            "repo_url": null,
+            "is_featured": true,
+            "sort_order": 1,
+            "created_at": "2026-09-05T10:04:33.000000Z",
+            "updated_at": "2026-09-05T10:04:33.000000Z",
+            "features": null
+        },
+        {
+            "id": 16,
+            "title": "CRM & Data Insight System",
+            "slug": "crm-data-insight-system",
+            "summary": "A Laravel-built CRM covering agency and policy management, claims tracking, and sales channel reporting.",
+            "description": "Directed ongoing development of a web-based CRM and Data Insight System that federates six-plus separate company databases — the legacy Insurance Core System (PPICIS), HR, IT support, assets, and underwriting — into one unified reporting and workflow platform, built on Laravel and delivered via Jira-managed agile sprints.\n\nWhat started as agency and policy management has grown into the company's primary business-intelligence layer: claims and underwriting analytics, a full production-reporting suite, per-channel sales dashboards, an AI assistant with tool-calling into live CRM data, and a self-service portal for external agencies.\n\nTech stack:\n- Laravel — serves the backend and business logic\n- MySQL — the primary store federating data from the other internal systems\n- Vue.js — drives the interactive dashboards and self-service agency portal\n- REST API — integrates the CRM with the Core System, HR, IT, and other databases\n- Chart.js — renders the sales, claims, and underwriting visualizations\n- BigQuery — handles the heavier analytical queries as a separate data warehouse",
+            "image": null,
+            "tech_stack": "Laravel, MySQL, Vue.js, REST API, Chart.js, BigQuery",
+            "project_url": null,
+            "repo_url": null,
+            "is_featured": true,
+            "sort_order": 2,
+            "created_at": "2026-09-05T10:04:33.000000Z",
+            "updated_at": "2026-09-05T10:04:33.000000Z",
+            "features": null
+        },
+        {
+            "id": 17,
+            "title": "Google Gemini AI Assistant & Automated Reporting",
+            "slug": "google-gemini-ai-assistant-automated-reporting",
+            "summary": "An AI assistant embedded in the CRM, giving staff verified answers on policies, claims, and underwriting turnaround time.",
+            "description": "Designed and integrated REST APIs connecting the CRM to a Google Gemini-based AI assistant, giving staff a conversational way to query the company's own data — not a generic chatbot bolted on top, but one with genuine tool-calling into the CRM's reporting layer.\n\nBuilt out from there into automated FAQ generation and daily market and competitor intelligence pipelines, grounded in the company's own sales and claims data rather than generic AI output.\n\nTech stack:\n- Laravel — hosts the integration layer\n- Google Gemini API — provides the generative model, wired with tool-calling so it queries live CRM data instead of answering generically\n- REST API — connects the CRM, Gemini, and external partner platforms, and drives the automated FAQ and market-report pipelines",
+            "image": null,
+            "tech_stack": "Laravel, Google Gemini API, REST API",
+            "project_url": null,
+            "repo_url": null,
+            "is_featured": true,
+            "sort_order": 3,
+            "created_at": "2026-09-05T10:04:33.000000Z",
+            "updated_at": "2026-09-05T10:04:33.000000Z",
+            "features": null
+        },
+        {
+            "id": 18,
+            "title": "Finance System with Vendor-Side Integration",
+            "slug": "finance-system-with-vendor-side-integration",
+            "summary": "An in-progress Finance System reconciling policy management, premium collection, claims payments, and settlement into one workflow.",
+            "description": "Built the company's Finance dashboard and premium-calculation engine on top of the Insurance Core System — invoice and premium summaries, receipt-voucher and claim-payment-voucher tracking, and division income against target, all in one place for the first time.\n\nCurrently extending this into a full Finance System that reconciles policy management, premium collection, claims payments, and vendor-side settlement into a single workflow.\n\nTech stack:\n- Laravel — runs the dashboard and premium-calculation engine on top of the Core System\n- MySQL — stores invoice, premium, and voucher data\n- PhpSpreadsheet — generates the Excel-based financial reports and reconciliation sheets",
+            "image": null,
+            "tech_stack": "Laravel, MySQL, PhpSpreadsheet",
+            "project_url": null,
+            "repo_url": null,
+            "is_featured": false,
+            "sort_order": 4,
+            "created_at": "2026-09-05T10:04:33.000000Z",
+            "updated_at": "2026-09-05T10:04:33.000000Z",
+            "features": null
+        },
+        {
+            "id": 19,
+            "title": "IT Support & Helpdesk System",
+            "slug": "it-support-helpdesk-system",
+            "summary": "A company-wide IT helpdesk ticketing system built around a formal SLA framework.",
+            "description": "After auditing how IT support requests were actually coming in and getting handled, I designed the company's IT Service Level Agreement (SLA) framework to define response and resolution targets.\n\nI then designed and led the development team in building the IT Support Request System that puts that SLA into practice — every request is logged, routed, and assigned to a specific team member, so nothing sits unaddressed.\n\nTech stack:\n- Laravel & PHP — run the ticket logging, routing, and SLA-tracking engine\n- MySQL — stores tickets and assignment history\n- Telegram Bot API — notifies assigned staff of new or overdue tickets directly in Telegram",
+            "image": null,
+            "tech_stack": "PHP, Laravel, MySQL, Telegram Bot API",
+            "project_url": null,
+            "repo_url": null,
+            "is_featured": false,
+            "sort_order": 5,
+            "created_at": "2026-09-05T10:04:33.000000Z",
+            "updated_at": "2026-09-05T10:04:33.000000Z",
+            "features": null
+        },
+        {
+            "id": 20,
+            "title": "HR & Employee Management System",
+            "slug": "hr-employee-management-system",
+            "summary": "An internal Employee Management System covering the directory, leave, attendance, and org chart.",
+            "description": "Led development of an internal Employee Management System covering the employee directory, leave requests and approvals, attendance, and the company's org chart — built to sit alongside the IT Support system as part of the same internal-tools push.\n\nLeave balances are computed automatically per Cambodian labor law (18 days/year), and attendance is synced from biometric check-in/check-out devices rather than entered manually.\n\nTech stack:\n- Laravel & PHP — handle the employee directory, leave workflow, and org chart\n- MySQL — stores employee records and attendance data synced in from biometric check-in/check-out devices, with leave balances computed automatically per Cambodian labor law",
+            "image": null,
+            "tech_stack": "PHP, Laravel, MySQL",
+            "project_url": null,
+            "repo_url": null,
+            "is_featured": false,
+            "sort_order": 6,
+            "created_at": "2026-09-05T10:04:33.000000Z",
+            "updated_at": "2026-09-05T10:04:33.000000Z",
+            "features": null
+        },
+        {
+            "id": 21,
+            "title": "Personal Portfolio",
+            "slug": "personal-portfolio",
+            "summary": "This site — a Laravel-powered portfolio with a blog and a full admin panel.",
+            "description": "Built with Laravel, Breeze, and Tailwind CSS. Includes a lightweight admin panel for managing projects, blog posts, skills, and site settings without touching code.\n\nTech stack:\n- Laravel & Breeze — provide the app structure and auth scaffolding\n- Blade — renders all pages and admin views server-side\n- Tailwind CSS — handles styling across the site and admin panel",
+            "image": null,
+            "tech_stack": "Laravel, Blade, Tailwind CSS",
+            "project_url": null,
+            "repo_url": null,
+            "is_featured": false,
+            "sort_order": 7,
+            "created_at": "2026-09-05T10:04:33.000000Z",
+            "updated_at": "2026-09-05T10:04:33.000000Z",
+            "features": null
+        }
+    ],
+    "posts": [
+        {
+            "id": 7,
+            "title": "The Ever-Evolving Challenge of Cultivating Trust in Tech",
+            "slug": "the-ever-evolving-challenge-of-cultivating-trust-in-tech",
+            "excerpt": "Saw a thought-provoking post \"Cultivating Trust\" on Hacker News today. It really got me thinking about how crucial trust is, both in the reliable systems we build and the emerging AI landscape.",
+            "body": "I was browsing Hacker News today, as I often do, and a headline really jumped out at me: \"Cultivating Trust\". The post, linked as part of \"Conquering Entropy,\" immediately resonated with me as an engineer. It highlights a fundamental challenge that underpins everything we do in software development, whether it's building a robust backend or designing an intuitive frontend.\r\n\r\nIn our daily work, trust is implicitly built into every line of code and every architectural decision. We trust our chosen programming frameworks – be it React, Laravel, or Django – to behave predictably. We build backend services with rigorous data integrity and rely on databases to store information securely and consistently. The entire user experience, from a smooth frontend interaction to reliable data retrieval, hinges on a deep-seated trust that the system will simply work as intended, combating the inherent \"entropy\" of complex systems.\r\n\r\nThis concept of cultivating trust takes on even more critical dimensions when we consider the rapid advancements in artificial intelligence. With AI companies like OpenAI, Anthropic, Google, and Meta pushing the boundaries, the question of trust in AI models' outputs, fairness, and safety is paramount. How do we ensure users and businesses can trust decisions made by AI, especially when issues like hallucinations or algorithmic bias can undermine that confidence?\r\n\r\nAs engineers, our role in fostering this trust is multifaceted. It involves meticulous attention to detail in writing clean, testable code, choosing battle-tested frameworks, and implementing secure database practices. It also extends to designing AI systems that are transparent, explainable, and accountable, incorporating ethical considerations from the ground up.\r\n\r\nUltimately, cultivating trust isn't a one-time achievement but an ongoing process. It requires constant vigilance against technical debt, proactive security measures, and a commitment to user-centric development. The Hacker News article serves as a timely reminder that as technology continues to evolve, our responsibility to build trustworthy systems only grows.",
+            "cover_image": "https://api.openverse.org/v1/images/06eab69f-9df8-4902-b887-f8d8505f8bd9/thumb/",
+            "is_published": true,
+            "published_at": "2026-09-06T16:43:00.000000Z",
+            "created_at": "2026-09-06T16:43:16.000000Z",
+            "updated_at": "2026-09-06T16:43:30.000000Z",
+            "video_url": null,
+            "type": "article"
+        },
+        {
+            "id": 6,
+            "title": "Is There I/O After Death? Peeking into io_uring's Afterlife",
+            "slug": "is-there-io-after-death-peeking-into-io-urings-afterlife",
+            "excerpt": "Just saw a fascinating article on Hacker News about what happens to io_uring operations when a process dies. This is crucial for understanding system robustness and resource management in high-performance applications.",
+            "body": "I stumbled across a really intriguing headline on Hacker News today: \"Is There I/O After Death? What Happens to Io_uring When a Process Dies.\" As someone who's spent a fair bit of time wrestling with system performance and reliability, that title immediately grabbed my attention. It's not just catchy; it points to a critical area of system programming.\r\n\r\nFor those unfamiliar, io_uring is a game-changer in the Linux kernel for asynchronous I/O. It allows applications to submit and complete I/O operations with incredibly low overhead, making it indispensable for high-performance databases, network proxies, and other demanding services where every microsecond counts. It's a modern, powerful interface, but with power comes complexity.\r\n\r\nThe question of what happens when a process initiating these operations suddenly dies is profound. Are the in-flight operations simply cancelled? Do they complete? Are resources properly cleaned up, or do we risk subtle leaks and corrupted states? These aren't abstract academic questions; they directly impact the stability and integrity of any application relying heavily on io_uring, especially in crash recovery scenarios.\r\n\r\nUnderstanding these nuances is essential for building truly robust systems. Imagine a database server that crashes mid-transaction. If its io_uring operations aren't handled gracefully, you could end up with inconsistent data or lingering kernel resources. This article likely delves into the kernel's mechanisms for managing and cleaning up io_uring rings and submissions post-mortem, which is invaluable knowledge for debugging and designing resilient software.\r\n\r\nIt's a fantastic reminder that even with sophisticated, low-level interfaces, the \"unhappy path\" of process death needs careful consideration. These kinds of deep dives into kernel behavior are what separate merely functional code from production-grade, battle-hardened systems. I'm definitely bookmarking this one for a closer read and some potential experimentation.",
+            "cover_image": "https://api.openverse.org/v1/images/88686543-3ac3-4dfc-80a1-c55ca2d1fb5a/thumb/",
+            "is_published": true,
+            "published_at": "2026-09-06T16:23:00.000000Z",
+            "created_at": "2026-09-06T16:22:55.000000Z",
+            "updated_at": "2026-09-06T16:23:12.000000Z",
+            "video_url": null,
+            "type": "article"
+        },
+        {
+            "id": 3,
+            "title": "More Than Just Algorithms: How We Feel About AI",
+            "slug": "more-than-just-algorithms-how-we-feel-about-ai",
+            "excerpt": "Caught a fascinating headline on Hacker News today: 'I Feel about AI.' It really struck a chord, reminding us that AI isn't just about technical feats; it's deeply entwined with our human emotions and societal impact.",
+            "body": "Scrolling through Hacker News this morning, a headline immediately grabbed my attention: 'I Feel about AI.' It’s short, simple, and incredibly loaded. As engineers knee-deep in building and interacting with these systems, it's easy to get lost in the technical challenges – the models, the data, the performance metrics. But this headline was a stark reminder that beyond the silicon and algorithms, there's a deeply human element at play.\r\n\r\nThis isn't just a philosophical debate for academics; it's a daily reality for those of us on the front lines. One moment, I'm buzzing with excitement over a breakthrough in a new AI feature, marveling at its capabilities. The next, a quiet apprehension creeps in as I ponder the broader implications – job displacement, ethical dilemmas, or even just the subtle shift in human interaction that these tools bring about. It’s a constant push and pull between awe and caution.\r\n\r\nThe phrase 'I Feel about AI' could be interpreted in so many ways. Is it about our feelings towards AI, or perhaps the emerging, often debated, concept of AI having feelings? While the latter is still largely in the realm of science fiction (for now), our collective human feelings – excitement, fear, wonder, skepticism – are undoubtedly shaping its trajectory. These aren't just abstract sentiments; they directly influence public perception, regulatory frameworks, and ultimately, what we choose to build and how we deploy it.\r\n\r\nFrom an engineering standpoint, understanding these 'feelings' is crucial. We're not just creating tools; we're creating companions, assistants, and even decision-makers that integrate into people's lives. The user experience isn't just about interface design; it’s about managing expectations, building trust, and mitigating anxieties. If we ignore the emotional layer, we risk building incredibly powerful tech that misses the mark on human needs or even generates widespread unease.\r\n\r\nSo, as we continue to push the boundaries of what AI can do, that Hacker News headline serves as a powerful anchor. It's a call to pause, to reflect, and to genuinely consider the human experience at every stage. Our feelings about AI, both positive and negative, are perhaps the most vital feedback loop we have, guiding us toward a future where technology truly serves humanity in a thoughtful, empathetic way.",
+            "cover_image": "https://api.openverse.org/v1/images/94839596-52ff-4bb1-833b-9fb2042d7acb/thumb/",
+            "is_published": true,
+            "published_at": "2026-09-06T15:11:00.000000Z",
+            "created_at": "2026-09-06T08:01:11.000000Z",
+            "updated_at": "2026-09-06T08:30:38.000000Z",
+            "video_url": null,
+            "type": "article"
+        }
+    ],
+    "skills": [
+        {
+            "id": 1,
+            "name": "Strategic IT Planning",
+            "category": "Leadership",
+            "level": 95,
+            "sort_order": 0,
+            "created_at": "2026-09-05T07:32:20.000000Z",
+            "updated_at": "2026-09-05T07:32:20.000000Z"
+        },
+        {
+            "id": 2,
+            "name": "Team Leadership & Mentorship",
+            "category": "Leadership",
+            "level": 95,
+            "sort_order": 1,
+            "created_at": "2026-09-05T07:32:20.000000Z",
+            "updated_at": "2026-09-05T07:32:20.000000Z"
+        },
+        {
+            "id": 15,
+            "name": "Claude Code",
+            "category": "AI & Integration",
+            "level": 85,
+            "sort_order": 1,
+            "created_at": "2026-09-05T08:14:02.000000Z",
+            "updated_at": "2026-09-05T08:14:02.000000Z"
+        },
+        {
+            "id": 3,
+            "name": "Vendor Management",
+            "category": "Leadership",
+            "level": 85,
+            "sort_order": 2,
+            "created_at": "2026-09-05T07:32:20.000000Z",
+            "updated_at": "2026-09-05T07:32:20.000000Z"
+        },
+        {
+            "id": 4,
+            "name": "Business Consulting",
+            "category": "Leadership",
+            "level": 90,
+            "sort_order": 3,
+            "created_at": "2026-09-05T07:32:20.000000Z",
+            "updated_at": "2026-09-05T07:32:20.000000Z"
+        },
+        {
+            "id": 5,
+            "name": "PHP & Laravel",
+            "category": "Development",
+            "level": 90,
+            "sort_order": 4,
+            "created_at": "2026-09-05T07:32:20.000000Z",
+            "updated_at": "2026-09-05T07:32:20.000000Z"
+        },
+        {
+            "id": 6,
+            "name": "Vue.js",
+            "category": "Development",
+            "level": 75,
+            "sort_order": 5,
+            "created_at": "2026-09-05T07:32:20.000000Z",
+            "updated_at": "2026-09-05T07:32:20.000000Z"
+        },
+        {
+            "id": 16,
+            "name": "Business Analysis",
+            "category": "Leadership",
+            "level": 88,
+            "sort_order": 5,
+            "created_at": "2026-09-05T08:14:02.000000Z",
+            "updated_at": "2026-09-05T08:14:02.000000Z"
+        },
+        {
+            "id": 7,
+            "name": "REST API Development",
+            "category": "Development",
+            "level": 85,
+            "sort_order": 6,
+            "created_at": "2026-09-05T07:32:20.000000Z",
+            "updated_at": "2026-09-05T07:32:20.000000Z"
+        },
+        {
+            "id": 8,
+            "name": "FileMaker Pro",
+            "category": "Development",
+            "level": 90,
+            "sort_order": 7,
+            "created_at": "2026-09-05T07:32:20.000000Z",
+            "updated_at": "2026-09-05T07:32:20.000000Z"
+        },
+        {
+            "id": 9,
+            "name": "Google Gemini API",
+            "category": "AI & Integration",
+            "level": 85,
+            "sort_order": 8,
+            "created_at": "2026-09-05T07:32:21.000000Z",
+            "updated_at": "2026-09-05T07:32:21.000000Z"
+        },
+        {
+            "id": 10,
+            "name": "AI-Assisted Development",
+            "category": "AI & Integration",
+            "level": 85,
+            "sort_order": 9,
+            "created_at": "2026-09-05T07:32:21.000000Z",
+            "updated_at": "2026-09-05T07:32:21.000000Z"
+        },
+        {
+            "id": 11,
+            "name": "Jira / Agile PM",
+            "category": "AI & Integration",
+            "level": 80,
+            "sort_order": 10,
+            "created_at": "2026-09-05T07:32:21.000000Z",
+            "updated_at": "2026-09-05T07:32:21.000000Z"
+        },
+        {
+            "id": 12,
+            "name": "Windows Server & Active Directory",
+            "category": "Systems & Security",
+            "level": 85,
+            "sort_order": 11,
+            "created_at": "2026-09-05T07:32:21.000000Z",
+            "updated_at": "2026-09-05T07:32:21.000000Z"
+        },
+        {
+            "id": 13,
+            "name": "Docker & Coolify",
+            "category": "Systems & Security",
+            "level": 75,
+            "sort_order": 12,
+            "created_at": "2026-09-05T07:32:21.000000Z",
+            "updated_at": "2026-09-05T07:32:21.000000Z"
+        },
+        {
+            "id": 14,
+            "name": "Compliance & Audit Remediation",
+            "category": "Systems & Security",
+            "level": 85,
+            "sort_order": 13,
+            "created_at": "2026-09-05T07:32:21.000000Z",
+            "updated_at": "2026-09-05T07:32:21.000000Z"
+        }
+    ],
+    "experiences": [
+        {
+            "id": 1,
+            "title": "Senior Information Technology Manager",
+            "company": "People & Partners Insurance PLC",
+            "start_label": "January 2025",
+            "end_label": null,
+            "highlights": "Develop and execute long-term IT strategy aligned with business goals, reporting directly to the Deputy CEO and providing strategic guidance to the Digital Solutions Manager, Senior IT & Digital Solutions Coordinator, and Application Developers.\nLeading Finance System development, integrating policy management, premium collection, claims payments, and settlement into one reconciled workflow.\nLed modernization of the Insurance Core System from a legacy FileMaker platform to a modern web-based platform, completed May 2026.\nDirected ongoing development of the CRM and Data Insight System, built on Laravel, covering agency and policy management, claims tracking, and sales channel reporting.\nDesigned and delivered a Google Gemini-based AI assistant embedded in the CRM, giving staff verified answers on policies, claims, and underwriting turnaround time.\nBuilt automated AI pipelines for FAQ generation and daily market intelligence reporting, grounded in the company's own sales and claims data.\nImplement and enforce cybersecurity measures, data protection protocols, and IT governance frameworks, addressing corrective actions from external and internal audit findings.\nSupervise, mentor, and develop the IT and Digital Solutions team.",
+            "sort_order": 1,
+            "created_at": "2026-09-05T08:26:33.000000Z",
+            "updated_at": "2026-09-05T08:26:33.000000Z"
+        },
+        {
+            "id": 2,
+            "title": "Information Technology Manager",
+            "company": "People & Partners Insurance PLC",
+            "start_label": "2022",
+            "end_label": "January 2025",
+            "highlights": "Promoted to lead software development projects and build an internal development team from the ground up.\nRecruited and trained developers on insurance business processes and system workflows.\nDeveloped a company-wide IT Support and Help Desk ticketing system, an internal Employee Management System, and an electronic Leave request and approval system.",
+            "sort_order": 2,
+            "created_at": "2026-09-05T08:26:33.000000Z",
+            "updated_at": "2026-09-05T08:26:33.000000Z"
+        },
+        {
+            "id": 3,
+            "title": "Information Technology Supervisor",
+            "company": "People & Partners Insurance PLC",
+            "start_label": "2018",
+            "end_label": "2022",
+            "highlights": "Developed and improved the Insurance Core System, built on FileMaker, working closely with business users to enhance underwriting and claims workflows.\nHelped develop finance-related features connecting policy management with premium collection, claims payments, and settlement processes.",
+            "sort_order": 3,
+            "created_at": "2026-09-05T08:26:33.000000Z",
+            "updated_at": "2026-09-05T08:26:33.000000Z"
+        },
+        {
+            "id": 4,
+            "title": "IT Helpdesk / IT Technician",
+            "company": "People & Partners Insurance PLC",
+            "start_label": "2014",
+            "end_label": "2018",
+            "highlights": "Provided technical support and maintained the company's computer network.\nWorked with vendors to set up the office network, install Windows Server, and configure Active Directory during the company's early growth.\nManaged the company's servers and overall IT environment.",
+            "sort_order": 4,
+            "created_at": "2026-09-05T08:26:33.000000Z",
+            "updated_at": "2026-09-05T08:26:33.000000Z"
+        },
+        {
+            "id": 5,
+            "title": "IT Intern (Web & Technical)",
+            "company": "Daun Penh Group / Norton University",
+            "start_label": "2011",
+            "end_label": "2013",
+            "highlights": "Assisted senior technicians with PC assembly, laboratory maintenance, and basic network cabling.\nDeveloped prototype web applications using basic PHP and MySQL.",
+            "sort_order": 5,
+            "created_at": "2026-09-05T08:26:33.000000Z",
+            "updated_at": "2026-09-05T08:26:33.000000Z"
+        }
+    ]
+}
