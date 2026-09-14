@@ -1,12 +1,11 @@
-import { getSiteSettings } from "@/lib/db/queries";
-import { readFlash } from "@/lib/flash";
+import { getSiteSettings } from "@/lib/content";
 import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 import { ToastRegion } from "@/components/site/Toast";
 import ScrollReveal from "@/components/site/ScrollReveal";
 
-export default async function SiteLayout({ children }: { children: React.ReactNode }) {
-  const [settings, flash] = await Promise.all([getSiteSettings(), readFlash()]);
+export default function SiteLayout({ children }: { children: React.ReactNode }) {
+  const settings = getSiteSettings();
 
   return (
     <>
@@ -15,7 +14,7 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
       <main className="animate__animated animate__fadeIn">{children}</main>
 
       <ScrollReveal />
-      <ToastRegion flash={flash} />
+      <ToastRegion />
 
       <Footer
         data={{
@@ -31,5 +30,3 @@ export default async function SiteLayout({ children }: { children: React.ReactNo
     </>
   );
 }
-
-export const dynamic = "force-dynamic";

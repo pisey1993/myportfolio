@@ -8,7 +8,7 @@ type Post = {
   title: string;
   excerpt: string | null;
   coverImage: string | null;
-  publishedAt: Date | null;
+  publishedAt: string | null;
 };
 
 export default function PostCard({ post, showPlayButton = false }: { post: Post; showPlayButton?: boolean }) {

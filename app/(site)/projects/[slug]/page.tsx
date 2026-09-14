@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProjectBySlug } from "@/lib/db/queries";
+import { getAllProjects, getProjectBySlug } from "@/lib/content";
 import MediaPlaceholder from "@/components/site/MediaPlaceholder";
+
+export function generateStaticParams() {
+  return getAllProjects().map((project) => ({ slug: project.slug }));
+}
 
 export default async function ProjectShowPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const project = await getProjectBySlug(slug);
+  const project = getProjectBySlug(slug);
   if (!project) notFound();
 
   const techStack = (project.techStack ?? "").split(",").map((t) => t.trim()).filter(Boolean);

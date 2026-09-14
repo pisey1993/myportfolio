@@ -1,4 +1,4 @@
-import { getSiteSettings, getExperiences, getSkills, avatarUrl } from "@/lib/db/queries";
+import { getSiteSettings, getExperiences, getSkills, avatarUrl } from "@/lib/content";
 import Avatar from "@/components/site/Avatar";
 import SocialLinks from "@/components/site/SocialLinks";
 

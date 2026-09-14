@@ -1,17 +1,21 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getPostBySlug } from "@/lib/db/queries";
+import { getAllPosts, getPostBySlug } from "@/lib/content";
 import { toEmbedUrl } from "@/lib/youtube";
 import { formatDate } from "@/lib/format";
 import MediaPlaceholder from "@/components/site/MediaPlaceholder";
 import ShareButtons from "@/components/site/ShareButtons";
 
+export function generateStaticParams() {
+  return getAllPosts().map((post) => ({ slug: post.slug }));
+}
+
 export default async function PostShowPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await getPostBySlug(slug);
+  const post = getPostBySlug(slug);
   if (!post) notFound();
 
-  const url = `${process.env.NEXTAUTH_URL ?? "http://localhost:3000"}/blog/${post.slug}`;
+  const url = `${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/blog/${post.slug}`;
 
   return (
     <article>

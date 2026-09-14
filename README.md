@@ -1,8 +1,14 @@
 # Portfolio
 
-A personal portfolio site — home, about, projects, blog, video blog, and contact form — with an admin panel for managing content, including a Gemini-AI-powered "Generate from AI News" feature for blog posts.
+A personal portfolio site — home, about, projects, blog, video blog, and contact — built as a fully **static site** with no backend, no database, and no server-side runtime required.
 
-Built with **Next.js (App Router) + TypeScript**, **Tailwind CSS**, **Drizzle ORM + Postgres**, and **Auth.js**, deployable to **Vercel**.
+Built with **Next.js (App Router) + TypeScript** and **Tailwind CSS**, exported via `next export` (`output: "export"`) to plain HTML/CSS/JS.
+
+## Content
+
+All content (site settings, projects, blog posts, skills, experience) lives in [`lib/data/content.json`](lib/data/content.json) and is read at build time by [`lib/content.ts`](lib/content.ts). To update the site, edit that JSON file and rebuild — there's no admin panel or database.
+
+The contact page lists your social/contact links and includes a simple form that opens the visitor's email client via a `mailto:` link (built client-side) — no server is involved in sending messages.
 
 ## Setup
 
@@ -12,62 +18,30 @@ Built with **Next.js (App Router) + TypeScript**, **Tailwind CSS**, **Drizzle OR
 npm install
 ```
 
-### 2. Provision services
-
-This app needs a Postgres database and (for avatar uploads) blob storage. The easiest path is via Vercel:
-
-1. Create a project on [vercel.com](https://vercel.com) (or run `vercel link` from this directory)
-2. Add **Vercel Postgres** (or connect a Neon database) — copy the `DATABASE_URL` it gives you
-3. Add **Vercel Blob** storage — copy the `BLOB_READ_WRITE_TOKEN` it gives you
-
-### 3. Configure environment variables
-
-Copy `.env.local.example` to `.env.local` and fill in:
-
-```bash
-cp .env.local.example .env.local
-```
-
-| Variable | Purpose |
-|---|---|
-| `DATABASE_URL` | Postgres connection string |
-| `BLOB_READ_WRITE_TOKEN` | Vercel Blob token, for avatar uploads |
-| `NEXTAUTH_SECRET` | Random string — generate with `openssl rand -base64 32` |
-| `NEXTAUTH_URL` | `http://localhost:3000` locally |
-| `ADMIN_EMAIL` / `ADMIN_PASSWORD` | Used once by `scripts/seed.ts` to create your admin login |
-| `GEMINI_API_KEY` / `GEMINI_MODEL` | Already set — powers the AI post generator |
-| `RESEND_API_KEY` / `CONTACT_NOTIFY_EMAIL` | Optional — email notification when someone submits the contact form. Without these, messages still save to the database. |
-
-### 4. Create the database schema and seed initial content
-
-```bash
-npm run db:push
-npm run db:seed
-```
-
-`db:seed` reads `data-export.json` (a one-time export from the original database) into Postgres, and creates your admin login from `ADMIN_EMAIL`/`ADMIN_PASSWORD`.
-
-### 5. Run locally
+### 2. Run locally
 
 ```bash
 npm run dev
 ```
 
-Visit `http://localhost:3000` for the site, `http://localhost:3000/admin/login` for the admin panel.
+Visit `http://localhost:3000`.
 
-### 6. Deploy
+### 3. Build the static site
 
-Push to GitHub and import the repo in Vercel, or run `vercel deploy` from this directory. Add the same environment variables in the Vercel project settings.
+```bash
+npm run build
+```
+
+This produces a fully static export in the `out/` directory — ready to deploy to any static host (GitHub Pages, Netlify, Cloudflare Pages, S3, Vercel static hosting, etc.). Preview it locally with:
+
+```bash
+npx serve out
+```
+
+Optionally set `NEXT_PUBLIC_SITE_URL` (e.g. in a `.env.local`) to the site's public URL — it's used to build absolute links for the blog post share buttons.
 
 ## Project structure
 
 - `app/(site)/` — public pages (home, about, projects, blog, video-blog, contact)
-- `app/admin/` — admin panel (dashboard, CRUD for projects/posts/skills/experiences, messages, settings), gated by `middleware.ts`
-- `lib/db/` — Drizzle schema and query helpers
-- `lib/gemini.ts`, `lib/hacker-news.ts`, `lib/images.ts` — the AI post generator: pulls a real, on-topic Hacker News headline, asks Gemini to write about it, and finds a matching cover photo
-- `scripts/seed.ts` — one-time data migration + admin user creation
-
-## Notes
-
-- There's no public registration page — a single admin account is created by the seed script. To reset the password, update `ADMIN_PASSWORD` and re-run a modified seed (or update the `admin_users` row directly).
-- The original Laravel app also had a raw SQL / schema-editing admin tool; it was intentionally not ported here as a security simplification. Use your database host's own dashboard (Neon/Vercel Postgres) for ad-hoc data inspection.
+- `lib/content.ts` — reads and shapes the static content from `lib/data/content.json`
+- `lib/data/content.json` — all site content (projects, posts, skills, experience, settings)

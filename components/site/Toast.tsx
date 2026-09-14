@@ -1,8 +1,5 @@
 "use client";
 
-import { useEffect } from "react";
-import { clearFlashCookie } from "@/lib/flash";
-
 type ToastType = "success" | "error" | "info";
 
 let region: HTMLDivElement | null = null;
@@ -34,15 +31,6 @@ export function showToast(message: string, type?: ToastType) {
   setTimeout(remove, 4200);
 }
 
-/** Reads a one-shot flash cookie (set by a Server Action right before redirect) and shows it as a toast. */
-export function ToastRegion({ flash }: { flash?: { message: string; type?: ToastType } | null }) {
-  useEffect(() => {
-    if (flash?.message) {
-      showToast(flash.message, flash.type);
-      clearFlashCookie();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [flash?.message]);
-
+export function ToastRegion() {
   return <div id="toast-region" ref={(el) => { region = el; }} aria-live="polite" />;
 }

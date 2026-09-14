@@ -1,4 +1,4 @@
-import { getVideoPosts } from "@/lib/db/queries";
+import { getVideoPosts } from "@/lib/content";
 import PostCard from "@/components/site/PostCard";
 
 export default async function VideoBlogPage() {

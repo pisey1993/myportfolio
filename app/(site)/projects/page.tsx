@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllProjects } from "@/lib/db/queries";
+import { getAllProjects } from "@/lib/content";
 import MediaPlaceholder from "@/components/site/MediaPlaceholder";
 
 export default async function ProjectsPage() {

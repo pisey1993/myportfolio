@@ -1,4 +1,4 @@
-import { getArticles } from "@/lib/db/queries";
+import { getArticles } from "@/lib/content";
 import PostCard from "@/components/site/PostCard";
 
 export default async function BlogPage() {

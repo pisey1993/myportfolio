@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getSiteSettings, getFeaturedProjects, getLatestArticles, getSkills, avatarUrl } from "@/lib/db/queries";
+import { getSiteSettings, getFeaturedProjects, getLatestArticles, getSkills, avatarUrl } from "@/lib/content";
 import HeroPhoto from "@/components/site/HeroPhoto";
 import SocialLinks from "@/components/site/SocialLinks";
 import MediaPlaceholder from "@/components/site/MediaPlaceholder";
