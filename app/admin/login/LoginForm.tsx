@@ -12,8 +12,8 @@ export default function LoginForm() {
   return (
     <form action={formAction} className="space-y-5">
       <div>
-        <label htmlFor="password" className="block text-sm font-medium text-slate-700 dark:text-slate-300">Password</label>
-        <input type="password" name="password" id="password" required autoFocus className="mt-1 block w-full rounded-xl border-slate-300 dark:border-white/10 dark:bg-white/5 shadow-sm focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm" />
+        <label htmlFor="password" className="block text-sm font-medium text-slate-700">Password</label>
+        <input type="password" name="password" id="password" required autoFocus className="mt-1 block w-full rounded-xl border-slate-300 bg-white text-slate-900 shadow-sm focus:border-fuchsia-500 focus:ring-fuchsia-500 text-sm" />
       </div>
       {state?.error && <p className="text-sm text-red-600">{state.error}</p>}
       <button
